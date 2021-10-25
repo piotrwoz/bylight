@@ -1,0 +1,25 @@
+<?php return array (
+  'parameters' => 
+  array (
+    'database_host' => 'db',
+    'database_port' => '',
+    'database_name' => 'bylightdb',
+    'database_user' => 'root',
+    'database_password' => 'root',
+    'database_prefix' => 'ps_',
+    'database_engine' => 'InnoDB',
+    'mailer_transport' => 'smtp',
+    'mailer_host' => '127.0.0.1',
+    'mailer_user' => NULL,
+    'mailer_password' => NULL,
+    'secret' => '3n8LgeO35Kr8zNfGCdSc9BFLg8JPIAjZKTxmbHWfIughUZQaiaCHjnf5JRGwbaBT',
+    'ps_caching' => 'CacheMemcache',
+    'ps_cache_enable' => false,
+    'ps_creation_date' => '2021-11-11',
+    'locale' => 'pl-PL',
+    'use_debug_toolbar' => true,
+    'cookie_key' => '4Cu9Qwp0jbbAn1kKmoh0qxj1MurrAx2joBTeD7H3BF82gqUgp06h4yAiyuuJHEye',
+    'cookie_iv' => 'C8RDD2BOssHRLkenkfBs82genNO4ff8P',
+    'new_cookie_key' => 'def00000af70610e72312656fa319fc04d26f70efb70033aa7a203b4cfa82c840eff2f3e425b6418e9d17280db635e46712b7ee60f8edf575f05bd1542053de812c1fa21',
+  ),
+);
