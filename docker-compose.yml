@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+    db:
+        image: mysql:5.7
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: bylightdb
+        restart: always
+        volumes:
+            - ./dbdump:/docker-entrypoint-initdb.d
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - 8080:80
+        environment:
+            PMA_HOST: db
+        depends_on:
+            - db
+
+    prestashop:
+        image: prestashop/prestashop:1.7.7.8
+        ports:
+            - 80:80
+        environment:
+            PS_INSTALL_AUTO: 0
+            PS_ERASE_DB: 0
+            DB_SERVER: db
+            DB_USER: root
+            DB_PASSWD: root
+            DB_NAME: bylightdb
+            PS_DEV_MODE: 1
+            ALLOW_OVERRIDE: 1
+            PS_DOMAIN: localhost:80
+        depends_on:
+            - db
+        restart: always
+        volumes:
+            - ./webprod:/var/www/html
