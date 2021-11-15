@@ -45,7 +45,7 @@ localhost:8080
 Remember to update `dbdump` with updated database backup which you can download from admin panel going to `Advanced / Data base / Backup / Download backup files`. If you are using Ubuntu backend your downloaded package will be downloaded in `webprod/backoffice/backups`. Use:
 
 ```bash
-mv webprod/backoffice/backups/<name of data base dump> webprod/dbdump
+mv webprod/backoffice/backups/<name of data base dump> dbdump
 ```
 
 Remeber to delete old data base dump!

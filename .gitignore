@@ -35,4 +35,5 @@ upload/
 /webbackup
 /webprod/cache
 /webprod/var/cache
-/webprod/var/logs
+/webprod/var/logs/
+.vscode/
