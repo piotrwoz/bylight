@@ -35,3 +35,4 @@ upload/
 /webbackup
 /webprod/cache
 /webprod/var/cache
+/webprod/var/logs
