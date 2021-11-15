@@ -31,7 +31,7 @@ docker-compose up -d
 To  access PrestaShop as admin go to
 
 ```
-localhost:80/admin838i5zodk
+localhost:80/backoffice
 ```
 
 To access PhpMyAdmin go to:
