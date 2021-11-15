@@ -12,14 +12,26 @@ In order to build this project use:
 docker-compose up -d
 ```
 ## Before you change anything
-It's considered a good practice to copy `webprod` folder into your `webbackup` folder. In case you mess sth up you can easili restore the shop.
+It's considered a good practice to copy `webprod` folder into your `webbackup` folder. In case you mess sth up you can easili restore the shop. If you call your backup folder another name remember to change it in `.gitignore` file;
 
 ## Development
+
+If you are using Windows kenerl be prepared for extremaly slow response from presta shop. We recommend enabling [Ubuntu backend in Docker](https://docs.docker.com/desktop/windows/wsl/)
+
+1. Power up Ubuntu on your host and type:
+```bash
+git clone https://github.com/piotrwoz/bylight.git bylight
+cd bylight
+chmod -R 777 ./
+code ./ 
+docker-compose up -d
+```
+`code ./` is used for development
 
 To  access PrestaShop as admin go to
 
 ```
-localhost:80/admin838i5zodk
+localhost:80/backoffice
 ```
 
 To access PhpMyAdmin go to:
@@ -30,7 +42,13 @@ localhost:8080
 
 ## Before commiting
 
-Remember to update `dbdump` with updated database backup which you can download from admin panel going to `Advanced / Data base / Backup / Download backup files`
+Remember to update `dbdump` with updated database backup which you can download from admin panel going to `Advanced / Data base / Backup / Download backup files`. If you are using Ubuntu backend your downloaded package will be downloaded in `webprod/backoffice/backups`. Use:
+
+```bash
+mv webprod/backoffice/backups/<name of data base dump> webprod/dbdump
+```
+
+Remeber to delete old data base dump!
 
 ## Authors
 
