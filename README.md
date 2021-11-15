@@ -16,6 +16,18 @@ It's considered a good practice to copy `webprod` folder into your `webbackup` f
 
 ## Development
 
+If you are using Windows kenerl be prepared for extremaly slow response from presta shop. We recommend enabling [Ubuntu backend in Docker](https://docs.docker.com/desktop/windows/wsl/)
+
+1. Power up Ubuntu on your host and type:
+```bash
+git clone https://github.com/piotrwoz/bylight.git bylight
+cd bylight
+chmod -R 777 ./
+code ./ 
+docker-compose up -d
+```
+'code ./' is used for development
+
 To  access PrestaShop as admin go to
 
 ```
