@@ -20,9 +20,14 @@ services:
             - db
 
     prestashop:
-        image: prestashop/prestashop:1.7.7.8
+        depends_on:
+            - db
         ports:
             - 80:80
+            - 443:443
+        build: 
+            context: .
+            dockerfile: Dockerfile
         environment:
             PS_INSTALL_AUTO: 0
             PS_ERASE_DB: 0
@@ -30,11 +35,10 @@ services:
             DB_USER: root
             DB_PASSWD: root
             DB_NAME: bylightdb
-            PS_DEV_MODE: 1
+            PS_DEV_MODE: 0
             ALLOW_OVERRIDE: 1
             PS_DOMAIN: localhost:80
-        depends_on:
-            - db
         restart: always
         volumes:
             - ./webprod:/var/www/html
+            - ./ssl/:/etc/apache2/sites-available
