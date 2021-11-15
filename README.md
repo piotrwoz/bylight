@@ -12,11 +12,11 @@ In order to build this project use:
 docker-compose up -d
 ```
 ## Before you change anything
-It's considered a good practice to copy `webprod` folder into your `webbackup` folder. In case you mess sth up you can easili restore the shop. If you call your backup folder another name remember to change it in `.gitignore` file;
+It's considered a good practice to copy `webprod` folder into your `webbackup` folder. In case you mess sth up you can easily restore the shop. If you call your backup folder another name remember to change it in `.gitignore` file;
 
 ## Development
 
-If you are using Windows kenerl be prepared for extremaly slow response from presta shop. We recommend enabling [Ubuntu backend in Docker](https://docs.docker.com/desktop/windows/wsl/)
+If you are using Windows kernel be prepared for extremaly slow response from presta shop. We recommend enabling [Ubuntu backend in Docker](https://docs.docker.com/desktop/windows/wsl/)
 
 1. Power up Ubuntu on your host and type:
 ```bash
