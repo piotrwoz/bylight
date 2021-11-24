@@ -15,7 +15,7 @@ class Item:
     #         ID| Aktywny (0 lub 1)| Nazwa  | Kategorie (x,y,z...)
     raw = str(self.id) + ";1;" + self.name + ";" + self.category + ";" 
     #Cena bez podatku. (netto)||ID reguły podatku
-    raw += str(self.price) + ";1;"
+    raw += str(self.price_with_tax) + ";1;"
     # Koszt własny|W sprzedaży (0 lub 1)|Wartość rabatu|Procent rabatu
     raw += ";0;;;"
     # Rabat od dnia (rrrr-mm-dd)|Rabat do dnia (rrrr-mm-dd)|Indeks #|Kod dostawcy
@@ -51,16 +51,4 @@ class Item:
     # Akcesoria (x,y,z...)
     raw += ""
     ###---------------------------------------------------------------------------------------------------
-    return raw
-  
-  def generate_simple_csv(self):
-              #id     aktywny   nazwa             #kategoria              #cena brutto         
-    raw = str(self.id) + ";1;" + self.name + ";" + self.category + ";" + str(self.price) + ";";
-                                     #na sell
-    raw += str(self.price_with_tax) + ";1;"
-          #url zdjecia          #opis                 #opis techniczny
-    raw += self.image + ";" + self.description + ";" + self.technical_properties + ";"
-          #dostepnosc
-    raw += "1;"
-    #raw += ";"
     return raw

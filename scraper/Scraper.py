@@ -84,7 +84,6 @@ def print_desc(desc):
 def get_price(main):
   price = main.find('p', class_='our_price_display')
   price_number = price.text.split('zł')[0].replace(" ","").replace(",",".")
-  #print(price_number)
   return round(float(price_number),2)
 
 def calculate_netto(price_with_tax):
@@ -94,7 +93,7 @@ def calculate_netto(price_with_tax):
 
 ###--------------------REAL SCRIPT---------------------------###
 file = open('./allProductsCSV.csv','w', encoding='utf-8')
-headerText = "ID;Aktywny (0 lub 1);Nazwa;Kategorie (x,y,z...);Cena bez podatku. (netto);"
+headerText = "ID;Aktywny (0 lub 1);Nazwa;Kategorie (x,y,z...);Cena zawiera podatek. (brutto);"
 headerText += "ID reguły podatku;Koszt własny;"
 headerText += "W sprzedaży (0 lub 1);Wartość rabatu;Procent rabatu;Rabat od dnia (rrrr-mm-dd);"
 headerText += "Rabat do dnia (rrrr-mm-dd);Indeks #;Kod dostawcy;Dostawca;Marka;kod EAN13;"
@@ -110,18 +109,10 @@ headerText += "Dostępne tylko online (0 = Nie, 1 = Tak);Stan:;Konfigurowalny (0
 headerText += "Pola tekstowe (0 = Nie, 1 = Tak);Akcja kiedy brak na stanie;Wirtualny produkt (0 = No, 1 = Yes);"
 headerText += "Adres URL pliku;Ilość dozwolonych pobrań;Data wygaśnięcia (rrrr-mm-dd);Liczba dni;ID / Nazwa sklepu;"
 headerText += "Zaawansowane zarządzanie magazynem;Zależny od stanu magazynowego;Magazyn;Akcesoria (x,y,z...)"
-#file.write("Id;Aktywny (0/1);Nazwa;Kategoria (x,y,z...);Cena bez podatku;Id reguły podatku;Cena z podatkiem;Na sprzedaż (0/1);Wartość zniżki;Procent zniżki;Zniżka od daty (rrrr-mm-dd);Zniżka do daty (rrrr-mm-dd);Indeks #;Kod dostawcy #;Dostawca;Producent;EAN13;UPC;Ecotax;Szerokość;Wysokość;Głębokość;Waga;Czas dostawy produktów dostępnych;Czas dostawy produktów niedostępnych z możliwą rezerwacją;Ilość;Minimalna ilość;Niski poziom produktów dostępnych w magazynie;Wyślij email do mnie kiedy ilość jest poniżej tego poziomu;Widoczność;Dodatkowe koszty przesyłki;Jednostka;Cena za jednostkę;Podsumowanie;Opis;Tagi (x,y,z...);Meta tytuł; Meta słowa kluczowe; Meta opis;Przepisany URL;Etykieta kiedy jest dostępny w magazynie;Etykieta kiedy dozwolone ponowne zamówienie;Dostępność do zamóienia (0/1);Data dostępności produktu;Data stworzenia produktu;Pokaż cenę (0/1);Adresy URL zdjęć (x,y,z...);Tekst alternatywny zdjęć (x,y,z...);Usuń istniejące zdjęcia (0/1);Cecha(nazwa:wartość:pozycja);Dostępność tylko online (0/1);Stan;Konfigurowalność (0/1);Możliwość wgrywania plików (0/1);Pola tekstowe (0/1);Akcja kiedy brak na stanie;Produkt wirtualny (0/1);Adres URL pliku;Liczba dozwolonych pobrań;Data wygaśnięcia (rrrr-mm-dd);Liczba dni;Id/nazwa sklepu;Zaawansowane zarządzanie magazynem;Zależność od stanu magazynu;Magazyn;Akcesoria (x,y,z...")
-file.write(headerText)
-#file.write("ID;Aktywny (0 lub 1);Nazwa;Kategorie (x,y,z...);Cena zawiera podatek. (brutto);Cena bez podatku. (netto);W sprzedaży (0 lub 1);Adresy URL zdjęcia (x,y,z...);Opis;Podsumowanie;Dostępność")
-file.close()
 
-###-------------------------------DO KATEGORII--------------------------------------------
-#file = open('allCategoriesCSV.csv','w', encoding='utf-8')
-#secondHeaderText = "ID;Aktywny (0 lub 1);Nazwa;Kategoria nadrzędna;Główna kategoria (0/1);Opis;"
-#secondHeaderText += "Meta-tytuł;Słowa kluczowe meta;Opis meta;Przepisany URL;URL zdjęcia;ID / Nazwa sklepu"
-#file.write(secondHeaderText)
-#file.close()
-###---------------------------------------------------------------------------
+file.write(headerText)
+
+file.close()
 
 ###------------------------------DO KOMBINACJI--------------------------------------------
 file = open('./allCombinationsCSV.csv','w', encoding='utf-8')
@@ -165,12 +156,6 @@ for category in categories:
     product_page_data = get_page_code(product_path)
     soup2 = BeautifulSoup(product_page_data,'lxml')
     main_content = soup2.find('div', id='center_column')
-    if(index == 247):
-      print(title)
-      print(description)
-      print(technical_properties)
-      print(full_price)
-      print(price_without_tax)
     title = get_title(main_content)
     description = get_description(main_content)
     technical_properties = get_technical_properties_table(main_content)
@@ -182,9 +167,9 @@ for category in categories:
     items.append(product)
     product_csv_raw = "\n" + product.generate_csv()
 
-    if(index < 520):
-      with open('allProductsCSV.csv', 'a', encoding='utf-8') as file:
-            file.write(product_csv_raw)
+  
+    with open('allProductsCSV.csv', 'a', encoding='utf-8') as file:
+          file.write(product_csv_raw)
     
 file.close()
 
