@@ -48,14 +48,14 @@ class TestUi(unittest.TestCase):
 
     def remove_from_cart(self):
         driver = self.driver
-        driver.get("https://localhost/koszyk?action=show")
+        driver.get("https://localhost:18033/index.php?controller=cart&action=show")
         delBtn = driver.find_elements(By.CSS_SELECTOR,"i.material-icons.float-xs-left")[0]
         delBtn.click()
 
 
     def fill_personal_data(self):
         driver = self.driver
-        driver.get("https://localhost/zam%C3%B3wienie")
+        driver.get("https://localhost:18033/index.php?controller=order")
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".radio-inline")))
         driver.find_elements(By.CSS_SELECTOR,".radio-inline")[0].click()
 
@@ -90,6 +90,12 @@ class TestUi(unittest.TestCase):
 
     def fill_address(self):
         driver = self.driver
+        i=0
+        try:
+            popUp = driver.findElement(By.CLASS_NAME, 'delete-address text-muted')
+            popUp.click()
+        except Exception:
+            i+=1
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//input[@name="address1"]')))
 
         letters = string.ascii_letters
@@ -147,7 +153,7 @@ class TestUi(unittest.TestCase):
 
     def check_status(self):
         driver = self.driver
-        driver.get("https://localhost/moje-konto")
+        driver.get("https://localhost:18033/index.php?controller=my-account")
         driver.find_element(By.XPATH,'//*[text()[contains(., "Historia i szczegóły zamówień")]]').click()
 
         elements = driver.find_elements(By.XPATH,'//*[text()[contains(., "Przygotowanie w toku")]]')
@@ -155,8 +161,8 @@ class TestUi(unittest.TestCase):
     def test_ui(self):
         maxProdsNum = 10
         firstCategoryProdsNum = random.randint(0,9)
-        self.add_to_cart("https://localhost/3-lampy-wiszace", firstCategoryProdsNum)
-        self.add_to_cart("https://localhost/4-kinkiety", maxProdsNum-firstCategoryProdsNum)
+        self.add_to_cart("https://localhost:18033/index.php?id_category=3&controller=category", firstCategoryProdsNum)
+        self.add_to_cart("https://localhost:18033/index.php?id_category=4&controller=category", maxProdsNum-firstCategoryProdsNum)
         self.remove_from_cart()
         self.create_account()
         self.check_status()
