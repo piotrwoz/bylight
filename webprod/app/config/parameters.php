@@ -1,10 +1,10 @@
 <?php return array (
   'parameters' => 
   array (
-    'database_host' => 'db',
-    'database_port' => '',
-    'database_name' => 'bylightdb',
-    'database_user' => 'root',
+    'database_host' => 'actina15.maas',
+    'database_port' => '3306',
+    'database_name' => 'be_180320',
+    'database_user' => 'be_180320',
     'database_password' => 'root',
     'database_prefix' => 'ps_',
     'database_engine' => 'InnoDB',

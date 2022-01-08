@@ -1,44 +1,26 @@
 version: '3.8'
 
 services:
-    db:
-        image: mysql:5.7
-        environment:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: bylightdb
-        restart: always
-        volumes:
-            - ./dbdump:/docker-entrypoint-initdb.d
-
-    phpmyadmin:
-        image: phpmyadmin/phpmyadmin
+    WojowniczeZolwieNinja:
         ports:
-            - 8080:80
-        environment:
-            PMA_HOST: db
-        depends_on:
-            - db
-
-    prestashop:
-        depends_on:
-            - db
-        ports:
-            - 80:80
-            - 443:443
-        build: 
-            context: .
-            dockerfile: Dockerfile
+            - 18032:80
+            - 18033:443
+        image: popularkiya/be_180320
         environment:
             PS_INSTALL_AUTO: 0
             PS_ERASE_DB: 0
-            DB_SERVER: db
-            DB_USER: root
+            DB_SERVER: actina15.maas
+            DB_USER: be_180320
             DB_PASSWD: root
-            DB_NAME: bylightdb
+            DB_NAME: be_180320
             PS_DEV_MODE: 0
             ALLOW_OVERRIDE: 1
-            PS_DOMAIN: localhost:80
+            PS_DOMAIN: localhost:18032
+            PS_DOMAIN_SSL: localhost:18033
         restart: always
-        volumes:
-            - ./webprod:/var/www/html
-            - ./ssl/:/etc/apache2/sites-available
+        networks:
+            - admin-mysql_default
+networks:
+    admin-mysql_default:
+        external:
+            name: admin-mysql_default
