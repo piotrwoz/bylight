@@ -33,7 +33,10 @@ download/
 /img/*
 upload/
 /webbackup
-/webprod/cache
-/webprod/var/cache
-/webprod/var/logs/
+/webprod/cache/*
+!/webprod/cache/.gitkeep 
+/webprod/var/cache/*
+!/webprod/var/cache/.gitkeep 
+/webprod/var/logs/*
+!/webprod/var/logs/.gitkeep 
 .vscode/
