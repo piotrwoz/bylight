@@ -174,7 +174,8 @@ def make_searching_available():
 ###-----------------------------------------------------------------------
 driver = webdriver.Chrome("C:\\chromedrivers\\win\\chromedriver.exe")
 driver.maximize_window()
-driver.get("http://localhost/backoffice/")
+##driver.get("http://localhost/backoffice/")
+driver.get("https://localhost:18033/backoffice/")
 
 
 email_field = find_email_field(driver)
